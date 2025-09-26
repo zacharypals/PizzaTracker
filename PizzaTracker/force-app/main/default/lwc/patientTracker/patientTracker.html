@@ -1,0 +1,115 @@
+<template>
+    <lightning-card title="">
+        <template if:true={isLoading}>
+            <div class="slds-p-around_medium">
+                <lightning-spinner alternative-text="Loading" size="small"></lightning-spinner>
+            </div>
+        </template>
+
+        <template if:false={isLoading}>
+            <template if:true={hasRows}>
+                <div class="slds-p-around_small">
+                    <div class="slds-accordion">
+                        <template for:each={rows} for:item="row">
+                            <section key={row.keyId} class={row.sectionClass} data-row-id={row.keyId}>
+                                <div class="slds-accordion__summary" data-row-id={row.keyId} onclick={onToggle}>
+                                    <h3 class="slds-accordion__summary-heading">
+                                        <button class="slds-button slds-accordion__summary-action"
+                                                aria-controls={row.contentId}
+                                                aria-expanded={row.isOpen}>
+                                            <span class="pt-header-stack">
+                                                <!-- Header line: chevron + title -->
+                                                <span class="pt-summary-row">
+                                                    <span class="pt-chevron" aria-hidden="true"></span>
+                                                    <template if:true={row.headerUrl}>
+                                                        <a href={row.headerUrl}
+                                                           target="_self"
+                                                           class="pt-summary-link slds-truncate"
+                                                           title={row.headerPrefix}
+                                                           onclick={onTitleClick}>
+                                                            {row.headerPrefix}: {row.headerName}
+                                                        </a>
+                                                    </template>
+                                                    <template if:false={row.headerUrl}>
+                                                        <span class="slds-truncate pt-summary-title" title={row.headerPrefix}>
+                                                            {row.headerPrefix}: {row.headerName}
+                                                        </span>
+                                                    </template>
+                                                </span>
+                                                <!-- Small subtitle: case count -->
+                                                <span class="pt-summary-subtitle">Cases: {row.caseCount}</span>
+                                            </span>
+
+                                            <!-- Progress area -->
+                                            <div class="pt-summary-progress">
+                                                <div class="pt-progress slds-progress slds-progress_horizontal" data-row-id={row.keyId}>
+                                                    <div class="pt-track" style={row.trackStyle}></div>
+                                                    <template for:each={row.trackSegments} for:item="seg">
+                                                        <div key={seg.key} class="pt-track-complete" style={seg.style}></div>
+                                                    </template>
+                                                    <ol class="slds-progress__list">
+                                                        <template for:each={row.decoratedStages} for:item="st">
+                                                            <li key={st.value} class={st.itemClass}>
+                                                                <span class="slds-progress__marker"
+                                                                      style={st.markerStyle}
+                                                                      title={st.label}></span>
+                                                            </li>
+                                                        </template>
+                                                    </ol>
+                                                </div>
+
+                                                <!-- DESKTOP/TABLET: show all labels -->
+                                                <template if:false={isMobile}>
+                                                    <div class="pt-step-labels" style={row.labelRowStyle}>
+                                                        <template for:each={row.decoratedStages} for:item="st">
+                                                            <div key={st.value} class="pt-step-label">{st.label}</div>
+                                                        </template>
+                                                    </div>
+                                                </template>
+
+                                                <!-- MOBILE: show only the current stage label -->
+                                                <template if:true={isMobile}>
+                                                    <div class="pt-step-labels pt-step-labels--mobile">
+                                                        <span class="pt-current-label">{row.currentStageLabel}</span>
+                                                    </div>
+                                                </template>
+                                            </div>
+                                        </button>
+                                    </h3>
+                                </div>
+
+                                <div id={row.contentId} class="slds-accordion__content" aria-hidden={row.ariaHidden}>
+                                    <template if:true={row.hasCases}>
+                                        <ul class="pt-case-list">
+                                            <template for:each={row.relatedCases} for:item="c">
+                                                <li key={c.id} class="pt-case-item">
+                                                    <a href={c.recordUrl} target="_self" class="pt-case-number">{c.caseNumber}</a>
+                                                    <div class="pt-case-meta">
+                                                        <span class="slds-badge pt-badge">{c.type}</span>
+                                                        <span class={c.statusClass}>{c.status}</span>
+                                                    </div>
+                                                    <div class="slds-truncate" title={c.subject}>{c.subject}</div>
+                                                    <div class="slds-text-color_weak slds-truncate" title={c.ownerName}>Owner: {c.ownerName}</div>
+                                                </li>
+                                            </template>
+                                        </ul>
+                                    </template>
+                                    <template if:false={row.hasCases}>
+                                        <div class="slds-p-around_small slds-text-color_weak">
+                                            <template if:true={row.casesLoaded}>No cases for this row.</template>
+                                            <template if:false={row.casesLoaded}>Loading cases…</template>
+                                        </div>
+                                    </template>
+                                </div>
+                            </section>
+                        </template>
+                    </div>
+                </div>
+            </template>
+
+            <template if:false={hasRows}>
+                <div class="slds-p-around_medium slds-text-color_weak">No related records found.</div>
+            </template>
+        </template>
+    </lightning-card>
+</template>

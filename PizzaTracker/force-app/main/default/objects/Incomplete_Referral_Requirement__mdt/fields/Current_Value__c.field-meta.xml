@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Current_Value__c</fullName>
+    <description>Used in a flow to display the current value of working record if the field is filled in. Do not fill manually.</description>
+    <externalId>false</externalId>
+    <fieldManageability>DeveloperControlled</fieldManageability>
+    <inlineHelpText>Used in a flow to display the current value of working record if the field is filled in. Do not fill manually.</inlineHelpText>
+    <label>Current Value</label>
+    <length>200</length>
+    <required>false</required>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

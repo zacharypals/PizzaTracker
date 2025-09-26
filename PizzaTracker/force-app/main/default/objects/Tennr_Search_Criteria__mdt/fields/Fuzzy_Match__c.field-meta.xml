@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Fuzzy_Match__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description>Check this box if you would like searchRecords to return records based on fuzzy match rather than exact match</description>
+    <fieldManageability>DeveloperControlled</fieldManageability>
+    <inlineHelpText>Check this box if you would like searchRecords to return records based on fuzzy match rather than exact match</inlineHelpText>
+    <label>Fuzzy Match</label>
+    <type>Checkbox</type>
+</CustomField>

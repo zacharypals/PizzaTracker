@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Universally_Required__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description>Denotes whether or not the field in question is universally required regardless of Referral Insurance Type.</description>
+    <fieldManageability>DeveloperControlled</fieldManageability>
+    <label>Universally Required</label>
+    <type>Checkbox</type>
+</CustomField>
