@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Fetch_Related_Cases__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description>When true, related cases will be fetched and included in the patient tracker response. When false, case relationships will be skipped for better performance.</description>
+    <fieldManageability>DeveloperControlled</fieldManageability>
+    <inlineHelpText>Enable this to fetch and display related cases in the patient tracker. Disable for better performance when case information is not needed.</inlineHelpText>
+    <label>Fetch Related Cases</label>
+    <type>Checkbox</type>
+</CustomField>
